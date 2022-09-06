@@ -1,5 +1,4 @@
 import * as Blockly from 'blockly';
-import { BlocklyLayout } from 'jupyterlab-blockly';
 import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
 // import 'blockly/python';
 /*
