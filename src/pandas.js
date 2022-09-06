@@ -1,33 +1,5 @@
 import * as Blockly from 'blockly';
 
-Blockly.Blocks['install_pd'] = {
-  init: function () {
-    this.appendDummyInput().appendField('Install Pandas');
-    this.setNextStatement(true, null);
-    this.setPreviousStatement(true, null);
-    this.setColour(230);
-  }
-};
-Blockly.Python['install_pd'] = function (block) {
-  return `
-!pip install pandas
-    `;
-};
-
-Blockly.Blocks['import_pd'] = {
-  init: function () {
-    this.appendDummyInput().appendField('Import Pandas');
-    this.setNextStatement(true, null);
-    this.setPreviousStatement(true, null);
-    this.setColour(230);
-  }
-};
-Blockly.Python['import_pd'] = function (block) {
-  return `
-import pandas as pd
-  `;
-};
-
 Blockly.Blocks['pd_series'] = {
   init: function () {
     this.appendDummyInput().appendField('Series');
@@ -150,8 +122,6 @@ const PANDAS_BLOCK_CATEGORIES = [
     name: 'Pandas',
     colour: '210',
     contents: [
-      { kind: 'block', type: 'install_pd' },
-      { kind: 'block', type: 'import_pd' },
       {
         kind: 'block',
         type: 'pd_series'
