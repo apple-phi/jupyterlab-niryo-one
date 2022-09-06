@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly';
+import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
 // import 'blockly/python';
 /*
  *  Blocks definition
@@ -41,7 +42,8 @@ const TOOLBOX_NIRYO = {
         //   type: 'niryo_one_connect'
         // }
       ]
-    }
+    },
+    ...DEFAULT_BLOCK_CATEGORIES
   ]
 };
 const BlocklyNiryo = {
