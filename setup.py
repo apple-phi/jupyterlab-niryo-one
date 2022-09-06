@@ -1,6 +1,7 @@
 """
 jupyterlab_niryo_one setup
 """
+
 import json
 import sys
 from pathlib import Path
@@ -26,9 +27,14 @@ ensured_targets = [
 labext_name = pkg_json["name"]
 
 data_files_spec = [
-    ("share/jupyter/labextensions/%s" % labext_name, str(lab_path.relative_to(HERE)), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str("."), "install.json"),
+    (
+        f"share/jupyter/labextensions/{labext_name}",
+        str(lab_path.relative_to(HERE)),
+        "**",
+    ),
+    (f"share/jupyter/labextensions/{labext_name}", ".", "install.json"),
 ]
+
 
 long_description = (HERE / "README.md").read_text()
 
@@ -91,7 +97,7 @@ except ImportError as e:
     import logging
     logging.basicConfig(format="%(levelname)s: %(message)s")
     logging.warning("Build tool `jupyter-packaging` is missing. Install it with pip or conda.")
-    if not ("--name" in sys.argv or "--version" in sys.argv):
+    if "--name" not in sys.argv and "--version" not in sys.argv:
         raise e
 
 if __name__ == "__main__":
