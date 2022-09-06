@@ -14,7 +14,7 @@ Blockly.Blocks['install'] = {
 Blockly.Python['install'] = function (block) {
     var choice = block.getFieldValue('choice');
     if (choice == 'all'){
-        choice = 'numpy, pandas';
+        choice = 'numpy pandas';
     }
     return `!pip install ${choice}\n`;
 };
