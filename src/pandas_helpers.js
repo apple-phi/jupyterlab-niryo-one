@@ -35,6 +35,7 @@ export class PandasObject {
         this.setHelpUrl(self.url);
       }
     };
+    // Blockly.Blocks[this.block_name].toplevel_init = 'import pandas as pd\n\n';
     Blockly.Python[this.block_name] = function (block) {
       let code = `${self.py_name}(`;
       for (const field of self.fields) {

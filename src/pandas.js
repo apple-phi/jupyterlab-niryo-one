@@ -10,15 +10,29 @@ const PANDAS_BLOCK_CATEGORIES = [
     name: 'Pandas',
     colour: '210',
     contents: [
-      new PandasObject('pd_series2', 'Series', 'pd.Series', ['data', 'name'])
-        .content,
+      new PandasObject('pd_series', 'Series', 'pd.Series', [
+        'data',
+        'index',
+        'dtype',
+        'name',
+        'copy'
+      ]).content,
       new PandasObject('pd_date_range', 'Date Range', 'pd.date_range', [
         'start',
         'end',
         'periods',
+        'freq',
         'tz',
         'normalize',
-        'name'
+        'name',
+        'inclusive'
+      ]).content,
+      new PandasObject('pd_dataframe', 'DataFrame', 'pd.DataFrame', [
+        'data',
+        'index',
+        'columns',
+        'dtype',
+        'copy'
       ]).content
     ]
   },
