@@ -39,13 +39,12 @@ export class PandasObject {
     Blockly.Python[this.block_name] = function (block) {
       let code = `${self.py_name}(`;
       for (const field of self.fields) {
-        code += `${field}=${
-          Blockly.Python.valueToCode(
-            block,
-            field,
-            Blockly.Python.ORDER_ATOMIC
-          ) || 'None'
-        },`;
+        const field_value = Blockly.Python.valueToCode(
+          block,
+          field,
+          Blockly.Python.ORDER_ATOMIC
+        );
+        code += `${field_value ? `${field_value}, ` : ''}`;
       }
       return code + ')\n';
     };
