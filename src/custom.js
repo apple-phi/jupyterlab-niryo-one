@@ -1,4 +1,5 @@
 import * as Blockly from 'blockly';
+import { BlocklyLayout } from 'jupyterlab-blockly';
 import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
 // import 'blockly/python';
 /*
@@ -6,32 +7,27 @@ import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
  */
 Blockly.Blocks['test_block'] = {
   init: function () {
+    // this.appendDummyInput().appendField(
+    //   new Blockly.FieldNumber(0, -Infinity, Infinity, 0.001),
+    //   'BLEH'
+    // );
+    this.appendDummyInput();
     this.appendDummyInput().appendField(
-      new Blockly.FieldNumber(0, -Infinity, Infinity, 0.001),
-      'BLEH'
+      new Blockly.FieldTextInput('BLEH'),
+      'NAME'
     );
     this.appendDummyInput();
+    this.appendDummyInput();
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setOutput(true, null);
   }
   // toplevel_init: 'woah'
 };
 
 Blockly.Python['test_block'] = function (block) {
-  return 'sus';
+  return 'sus', 'sussest';
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Blockly.Blocks['sus_block'] = {
   init: function () {
