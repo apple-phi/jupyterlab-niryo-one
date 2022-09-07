@@ -1,8 +1,8 @@
 import * as Blockly from 'blockly';
 
-export const PandasColors = { OBJECT: 230, FUNC: 110 };
+export const BlockColors = { OBJECT: 230, FUNC: 110 };
 
-export class PandasBase {
+export class BlockBase {
   constructor(
     block_name,
     display_name,
@@ -10,7 +10,7 @@ export class PandasBase {
     fields,
     tooltip = '',
     url = '',
-    color = PandasColors.OBJECT
+    color = BlockColors.OBJECT
   ) {
     this.block_name = block_name;
     this.display_name = display_name;
@@ -45,7 +45,7 @@ export class PandasBase {
   }
 }
 
-export class PandasObject extends PandasBase {
+export class ObjectBlock extends BlockBase {
   constructor(...args) {
     super(...args);
     this.activate(this);
@@ -68,7 +68,7 @@ export class PandasObject extends PandasBase {
   }
 }
 
-export class PandasMethod extends PandasBase {
+export class MethodBlock extends BlockBase {
   constructor(...args) {
     super(...args);
     this.activate(this);
@@ -98,8 +98,8 @@ export class PandasMethod extends PandasBase {
   }
 }
 
-export class Generic extends PandasBase {
-  constructor(func,...args) {
+export class Generic extends BlockBase {
+  constructor(func, ...args) {
     super(...args);
     this.func = func;
     this.activate(this);
@@ -114,13 +114,13 @@ export class Generic extends PandasBase {
         _fields.shift(),
         Blockly.Python.ORDER_ATOMIC
       );
-      return [self.func(obj,_fields), Blockly.Python.ORDER_FUNCTION_CALL];
+      return [self.func(obj, _fields), Blockly.Python.ORDER_FUNCTION_CALL];
     };
     return self;
   }
 }
 
-export function join_kwargs(_fields){
+export function join_kwargs(_fields) {
   let code = '';
   for (const field of _fields) {
     const field_value = Blockly.Python.valueToCode(
@@ -133,7 +133,7 @@ export function join_kwargs(_fields){
   return code;
 }
 
-export function join_args(_fields){
+export function join_args(_fields) {
   let code = '';
   for (const field of _fields) {
     const field_value = Blockly.Python.valueToCode(
