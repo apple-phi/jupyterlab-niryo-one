@@ -31,8 +31,8 @@ class Const{
           }
       };
       // Blockly.Blocks[this.block_name].toplevel_init = 'import pandas as pd\n\n';
-      Blockly.Python[this.block_name] = function (block) {
-        return [this.py_name, this.order];
+      Blockly.Python[self.block_name] = function (block) {
+        return [self.py_name, self.order];
       };
       return self;
     }
