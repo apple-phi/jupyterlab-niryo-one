@@ -3,7 +3,7 @@ import { ObjectBlock } from './block-helpers';
 const DATE_BLOCK_CATEGORIES = [
   {
     kind: 'category',
-    name: 'Pandas',
+    name: 'Datetime',
     colour: '210',
     contents: [
       new ObjectBlock(
