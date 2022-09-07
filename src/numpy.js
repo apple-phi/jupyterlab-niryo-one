@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly';
-import { ListLikeObject } from './multi_item';
+import { PandasObject, PandasColors, PandasMethod } from './pandas_helpers';
 
 class Const{
     constructor(
@@ -48,13 +48,26 @@ const NUMPY_BLOCK_CATEGORIES = [
       name: 'Numpy',
       colour: '210',
       contents: [
-        new Const('npnan','NaN', 'np.nan').content,
-        new Const('npinf','Infinity', 'np.inf').content,
-        new Const('npninf','-Infinity', 'np.NINF').content,
-        new Const('npnzero','-0', 'np.NZERO').content,
-        new Const('nppi','Pi', 'np.pi').content,
-        new ListLikeObject('set','set',(array)=>'{'+array.join(',')+'}').content,
-        new ListLikeObject('dict','dict',(array)=>'{'+array.join(',')+'}').content,
+        {
+          kind: 'category',
+          name: 'Constants',
+          colour: '210',
+          contents: [
+              new Const('npnan','NaN', 'np.nan').content,
+              new Const('npinf','Infinity', 'np.inf').content,
+              new Const('npninf','-Infinity', 'np.NINF').content,
+              new Const('npnzero','-0', 'np.NZERO').content,
+              new Const('nppi','Pi', 'np.pi').content,
+          ]
+        },
+        {
+          kind: 'category',
+          name: 'Array',
+          colour: '210',
+          contents: [
+            new PandasObject('nparray','Array','np.array','object,dtype,copy,order,subok,ndmin,like'.split(',')).content
+          ]
+        },
       ]
     },
   ];

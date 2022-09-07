@@ -1,9 +1,13 @@
 import * as Blockly from 'blockly';
+import { ListLikeObject } from './multi_item';
+import { Generic, join_args } from './pandas_helpers';
+
 
 const libraries = {
   numpy: 'numpy np',
   pandas: 'pandas pd',
-  pyplot: 'matplotlib.pyplot plt'
+  pyplot: 'matplotlib.pyplot plt',
+  datetime: 'datetime dtm'
 };
 const options = Object.keys(libraries).map(x => [x, x]);
 options.push(['all', 'all']);
@@ -49,7 +53,7 @@ Blockly.Python['import'] = function (block) {
   if (block.getFieldValue('choice') == 'all') {
     var code = '';
     for (key in libraries) {
-      const [a, b] = libraries[key].split();
+      const [a, b] = libraries[key].split(" ");
       code += `import ${a} as ${b}\n`;
     }
     return code;
@@ -102,6 +106,12 @@ Blockly.Python['link'] = function (block) {
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
+
+
+
+
+
+
 const GENERAL_BLOCK_CATEGORIES = [
   {
     kind: 'SEP'
@@ -114,7 +124,11 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'install' },
       { kind: 'block', type: 'import' },
       { kind: 'block', type: 'exec' },
-      { kind: 'block', type: 'link' }
+      { kind: 'block', type: 'link' },
+      new ListLikeObject('set','set',array=>'{'+array.join(',')+'}').content,
+      new ListLikeObject('dict','dict',array=>'{'+array.join(',')+'}').content,
+      new ListLikeObject('index','index',array=>'['+array.join(',')+']').content,
+      //new Generic((obj, fields)=>obj+'['+join_args(fields)+']','index','index',).content,
     ]
   },
   {
