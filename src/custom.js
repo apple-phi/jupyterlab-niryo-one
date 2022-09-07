@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly';
 import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
 import PANDAS_BLOCK_CATEGORIES from './pandas';
+import NUMPY_BLOCK_CATEGORIES from './numpy';
 import GENERAL_BLOCK_CATEGORIES from './general';
 // import 'blockly/python';
 /*
@@ -57,6 +58,7 @@ const TOOLBOX_NIRYO = {
   kind: 'categoryToolbox',
   contents: [
     ...PANDAS_BLOCK_CATEGORIES,
+    ...NUMPY_BLOCK_CATEGORIES,
     ...GENERAL_BLOCK_CATEGORIES,
     {
       kind: 'category',
