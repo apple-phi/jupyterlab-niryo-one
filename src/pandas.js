@@ -16,7 +16,8 @@ const PANDAS_BLOCK_CATEGORIES = [
         'pd.Series',
         ['data', 'index', 'dtype', 'name', 'copy'],
         '',
-        'https://pandas.pydata.org/docs/reference/api/pandas.Series.html'
+        'https://pandas.pydata.org/docs/reference/api/pandas.Series.html',
+        PandasColors.OBJECT
       ).content,
       new PandasObject(
         'pd_date_range',
@@ -33,7 +34,8 @@ const PANDAS_BLOCK_CATEGORIES = [
           'inclusive'
         ],
         '',
-        'https://pandas.pydata.org/docs/reference/api/pandas.date_range.html'
+        'https://pandas.pydata.org/docs/reference/api/pandas.date_range.html',
+        PandasColors.OBJECT
       ).content,
       new PandasObject(
         'pd_dataframe',
@@ -41,7 +43,8 @@ const PANDAS_BLOCK_CATEGORIES = [
         'pd.DataFrame',
         ['data', 'index', 'columns', 'dtype', 'copy'],
         '',
-        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html'
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html',
+        PandasColors.OBJECT
       ).content,
       new PandasObject(
         'df_dropna',
@@ -68,6 +71,24 @@ const PANDAS_BLOCK_CATEGORIES = [
         ['self', 'axis', 'skipna'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
+        PandasColors.FUNC
+      ).content,
+      new PandasObject(
+        'df_all',
+        'DF All',
+        'pd.DataFrame.all',
+        ['self', 'axis', 'bool_only', 'skipna', 'level'],
+        '',
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html',
+        PandasColors.FUNC
+      ).content,
+      new PandasObject(
+        'df_any',
+        'DF Any',
+        'pd.DataFrame.all',
+        ['self', 'axis', 'bool_only', 'skipna', 'level'],
+        '',
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.any.html',
         PandasColors.FUNC
       ).content
     ]

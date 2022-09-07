@@ -34,7 +34,7 @@ export class PandasObject {
             .appendField(field);
         }
         this.setOutput(true, null);
-        this.setColour(230);
+        this.setColour(self.color);
         this.setTooltip(self.tooltip);
         this.setHelpUrl(self.url);
       }
