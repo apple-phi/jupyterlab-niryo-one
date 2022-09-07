@@ -2,7 +2,7 @@ import * as Blockly from 'blockly';
 import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
 import PANDAS_BLOCK_CATEGORIES from './pandas';
 import NUMPY_BLOCK_CATEGORIES from './numpy';
-import GENERAL_BLOCK_CATEGORIES from './general';
+import GENERAL_BLOCK_CATEGORIES from './misc';
 // import 'blockly/python';
 /*
  *  Blocks definition
