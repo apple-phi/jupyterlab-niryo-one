@@ -2,7 +2,7 @@ import * as Blockly from 'blockly';
 
 export const PandasColors = { OBJECT: 230, FUNC: 110 };
 
-export class PandasObject {
+export class PandasBase {
   constructor(
     block_name,
     display_name,
@@ -20,9 +20,11 @@ export class PandasObject {
     this.url = url;
     this.color = color;
     this.content = { kind: 'block', type: this.block_name };
-    this.register(this);
+    this.register(this).activate(self);
+    console.log(this.content);
   }
   register(self) {
+    console.log(`$registering ${self.block_name}`);
     Blockly.Blocks[this.block_name] = {
       init: function () {
         this.appendDummyInput().appendField(self.display_name);
@@ -39,9 +41,50 @@ export class PandasObject {
         this.setHelpUrl(self.url);
       }
     };
+    return self;
+  }
+}
+
+export class PandasObject extends PandasBase {
+  constructor(...args) {
+    super(...args);
+    this.activate(this);
+  }
+  activate(self) {
+    console.log(`$activating ${self.block_name}`);
     Blockly.Python[this.block_name] = function (block) {
       let code = `${self.py_name}(`;
       for (const field of self.fields) {
+        const field_value = Blockly.Python.valueToCode(
+          block,
+          field,
+          Blockly.Python.ORDER_ATOMIC
+        );
+        code += `${field_value ? `${field}=${field_value}, ` : ''}`;
+      }
+      return [code + ')', Blockly.Python.ORDER_FUNCTION_CALL];
+    };
+    return self;
+  }
+}
+
+export class PandasMethod extends PandasBase {
+  constructor(...args) {
+    super(...args);
+    this.activate(this);
+  }
+
+  activate(self) {
+    console.log(`$activating ${self.block_name}`);
+    Blockly.Python[this.block_name] = function (block) {
+      let _fields = [...self.fields];
+      let obj = Blockly.Python.valueToCode(
+        block,
+        _fields.shift(),
+        Blockly.Python.ORDER_ATOMIC
+      );
+      let code = `${obj}.${self.py_name}(`;
+      for (const field of _fields) {
         const field_value = Blockly.Python.valueToCode(
           block,
           field,
