@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly';
-import { ListLikeObject } from './multi_item';
+import { ListLikeObject, DictLikeObject } from './multi_item';
 import { Generic, join_args } from './pandas_helpers';
 
 
@@ -167,7 +167,7 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'exec' },
       { kind: 'block', type: 'link' },
       new ListLikeObject('set','set',array=>'{'+array.join(',')+'}').content,
-      new ListLikeObject('dict','dict',array=>'{'+array.join(',')+'}').content,
+      new DictLikeObject('dict','dict',array=>'{'+array.map(([a,b])=>`${a}:${b}`).join(',')+'}').content,
       new ListLikeObject('index','index',array=>'['+array.join(',')+']').content,
       //new Generic((obj, fields)=>obj+'['+join_args(fields)+']','index','index',).content,
     ]
