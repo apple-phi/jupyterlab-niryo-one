@@ -95,6 +95,7 @@ const PANDAS_BLOCK_CATEGORIES = [
         'df_plot',
         'DF Plot',
         'plot',
+        // '__getattr__(["plot",plt.figure()][0])',
         ['data'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html',
