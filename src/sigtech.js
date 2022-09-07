@@ -22,7 +22,7 @@ const SIGTECH_BLOCK_CATEGORIES = [
         contents: [
           new ObjectBlock(
             'basket_strategy',
-            'BasketStrategy',
+            'Basket Strategy',
             'sig.BasketStrategy',
             [
               'constituent_names',
@@ -38,6 +38,15 @@ const SIGTECH_BLOCK_CATEGORIES = [
             ],
             '',
             'https://docs.sigtech.com/latest/api/sigtech.framework.strategies.basket_strategies.BasketStrategy.html',
+            '210'
+          ).content,
+          new ObjectBlock(
+            'reinvestment_strategy',
+            'Reinvestment Strategy',
+            'sig.ReinvestmentStrategy',
+            ['currency', 'underlyer', 'start_date', 'end_date', 'initial_cash'],
+            '',
+            'https://platform.sigtech.com/docs/api/sigtech.framework.strategies.reinvestment_strategy.ReinvestmentStrategy.html#sigtech.framework.strategies.reinvestment_strategy.ReinvestmentStrategy',
             '210'
           ).content
         ]
