@@ -6,7 +6,8 @@ const libraries = {
   numpy: 'numpy np',
   pandas: 'pandas pd',
   pyplot: 'matplotlib.pyplot plt',
-  datetime: 'datetime dtm'
+  datetime: 'datetime dtm',
+  sigtech: 'sigtech.framework sig;sig.init();'
 };
 const options = Object.keys(libraries).map(x => [x, x]);
 options.push(['all', 'all']);
@@ -158,8 +159,11 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'link' },
       new ListLikeObject('set', 'set', array => '{' + array.join(',') + '}')
         .content,
-      new DictLikeObject('dict', 'dict', array => '{' + array.map(([a,b])=>`${a}:${b}`).join(',') + '}')
-        .content,
+      new DictLikeObject(
+        'dict',
+        'dict',
+        array => '{' + array.map(([a, b]) => `${a}:${b}`).join(',') + '}'
+      ).content,
       new ListLikeObject('index', 'index', array => '[' + array.join(',') + ']')
         .content
       //new Generic((obj, fields)=>obj+'['+join_args(fields)+']','index','index',).content,
