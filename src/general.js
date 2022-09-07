@@ -6,7 +6,8 @@ const libraries = {
   numpy: 'numpy np',
   pandas: 'pandas pd',
   pyplot: 'matplotlib.pyplot plt',
-  datetime: 'datetime dtm'
+  datetime: 'datetime dtm',
+  sigtech: 'sigtech.framework sig;sig.init();'
 };
 const options = Object.keys(libraries).map(x => [x, x]);
 options.push(['all', 'all']);
