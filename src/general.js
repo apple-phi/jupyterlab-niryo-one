@@ -27,13 +27,13 @@ Blockly.Python['install'] = function (block) {
   if (block.getFieldValue('choice') == 'all') {
     code = '!pip install ';
     for (key in libraries) {
-      code += ' ' + libraries[key].split(" ")[0].split('.')[0];
+      code += ' ' + libraries[key].split(' ')[0].split('.')[0];
     }
     return code;
   } else {
     return (
       '!pip install ' +
-      libraries[block.getFieldValue('choice')].split(" ")[0].split('.')[0]
+      libraries[block.getFieldValue('choice')].split(' ')[0].split('.')[0]
     );
   }
 };
@@ -58,7 +58,10 @@ Blockly.Python['import'] = function (block) {
     }
     return code;
   } else {
-    return `import ${libraries[block.getFieldValue('choice')].replace(' ',' as ')}\n`;
+    return `import ${libraries[block.getFieldValue('choice')].replace(
+      ' ',
+      ' as '
+    )}\n`;
   }
 };
 
@@ -111,6 +114,44 @@ Blockly.Python['link'] = function (block) {
 
 
 
+
+Blockly.Blocks['slice'] = {
+  init: function () {
+    this.appendDummyInput().appendField('Slice');
+    this.appendValueInput('start').setCheck(null);
+    this.appendDummyInput().appendField(':');
+    this.appendValueInput('stop').setCheck(null);
+    this.appendDummyInput().appendField(':');
+    this.appendValueInput('step').setCheck(null);
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl(
+      'https://stackoverflow.com/questions/509211/understanding-slicing'
+    );
+  }
+};
+Blockly.Python['slice'] = function (block) {
+  var value_start = Blockly.Python.valueToCode(
+    block,
+    'start',
+    Blockly.Python.ORDER_ATOMIC
+  );
+  var value_stop = Blockly.Python.valueToCode(
+    block,
+    'stop',
+    Blockly.Python.ORDER_ATOMIC
+  );
+  var value_step = Blockly.Python.valueToCode(
+    block,
+    'step',
+    Blockly.Python.ORDER_ATOMIC
+  );
+  var code = `slice(${value_start || 'None'}, ${value_stop || 'None'}, ${
+    value_step || 'None'
+  })`;
+  return [code, Blockly.Python.ORDER_FUNCTION_CALL];
+};
 
 const GENERAL_BLOCK_CATEGORIES = [
   {
