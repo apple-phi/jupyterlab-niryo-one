@@ -97,3 +97,51 @@ export class PandasMethod extends PandasBase {
     return self;
   }
 }
+
+export class Generic extends PandasBase {
+  constructor(func,...args) {
+    super(...args);
+    this.func = func;
+    this.activate(this);
+  }
+
+  activate(self) {
+    console.log(`$activating ${self.block_name}`);
+    Blockly.Python[this.block_name] = function (block) {
+      let _fields = [...self.fields];
+      let obj = Blockly.Python.valueToCode(
+        block,
+        _fields.shift(),
+        Blockly.Python.ORDER_ATOMIC
+      );
+      return [self.func(obj,_fields), Blockly.Python.ORDER_FUNCTION_CALL];
+    };
+    return self;
+  }
+}
+
+export function join_kwargs(_fields){
+  let code = '';
+  for (const field of _fields) {
+    const field_value = Blockly.Python.valueToCode(
+      block,
+      field,
+      Blockly.Python.ORDER_ATOMIC
+    );
+    code += `${field_value ? `${field}=${field_value}, ` : ''}`;
+  }
+  return code;
+}
+
+export function join_args(_fields){
+  let code = '';
+  for (const field of _fields) {
+    const field_value = Blockly.Python.valueToCode(
+      block,
+      field,
+      Blockly.Python.ORDER_ATOMIC
+    );
+    code += `${field_value ? `${field_value}, ` : ''}`;
+  }
+  return code;
+}
