@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly';
-import { PandasObject, PandasColors } from './pandas_helpers';
+import { PandasObject, PandasColors, PandasMethod } from './pandas_helpers';
 
 const PANDAS_BLOCK_CATEGORIES = [
   {
@@ -46,49 +46,58 @@ const PANDAS_BLOCK_CATEGORIES = [
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html',
         PandasColors.OBJECT
       ).content,
-      new PandasObject(
+      new PandasMethod(
         'df_dropna',
         'DF Drop NaN',
-        'pd.DataFrame.dropna',
+        'dropna',
         ['self', 'axis', 'how', 'thresh', 'subset', 'inplace'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html',
         PandasColors.FUNC
       ).content,
-      new PandasObject(
+      new PandasMethod(
         'df_t',
         'DF Transpose',
-        'pd.DataFrame.transpose',
+        'transpose',
         ['self', 'copy'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
         PandasColors.FUNC
       ).content,
-      new PandasObject(
+      new PandasMethod(
         'df_cumsum',
         'DF CumSum',
-        'pd.DataFrame.cumsum',
+        'cumsum',
         ['self', 'axis', 'skipna'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
         PandasColors.FUNC
       ).content,
-      new PandasObject(
+      new PandasMethod(
         'df_all',
         'DF All',
-        'pd.DataFrame.all',
+        'all',
         ['self', 'axis', 'bool_only', 'skipna', 'level'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html',
         PandasColors.FUNC
       ).content,
-      new PandasObject(
+      new PandasMethod(
         'df_any',
         'DF Any',
-        'pd.DataFrame.all',
+        'all',
         ['self', 'axis', 'bool_only', 'skipna', 'level'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.any.html',
+        PandasColors.FUNC
+      ).content,
+      new PandasMethod(
+        'df_plot',
+        'DF Plot',
+        'plot',
+        ['data'],
+        '',
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html',
         PandasColors.FUNC
       ).content
     ]
