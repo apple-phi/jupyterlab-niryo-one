@@ -2,7 +2,6 @@ import * as Blockly from 'blockly';
 import { ListLikeObject } from './multi_item';
 import { Generic, join_args } from './pandas_helpers';
 
-
 const libraries = {
   numpy: 'numpy np',
   pandas: 'pandas pd',
@@ -53,7 +52,7 @@ Blockly.Python['import'] = function (block) {
   if (block.getFieldValue('choice') == 'all') {
     var code = '';
     for (key in libraries) {
-      const [a, b] = libraries[key].split(" ");
+      const [a, b] = libraries[key].split(' ');
       code += `import ${a} as ${b}\n`;
     }
     return code;
@@ -109,12 +108,6 @@ Blockly.Python['link'] = function (block) {
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
-
-
-
-
-
-
 Blockly.Blocks['slice'] = {
   init: function () {
     this.appendDummyInput().appendField('Slice');
@@ -155,9 +148,6 @@ Blockly.Python['slice'] = function (block) {
 
 const GENERAL_BLOCK_CATEGORIES = [
   {
-    kind: 'SEP'
-  },
-  {
     kind: 'category',
     name: 'Misc',
     colour: '210',
@@ -166,14 +156,14 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'import' },
       { kind: 'block', type: 'exec' },
       { kind: 'block', type: 'link' },
-      new ListLikeObject('set','set',array=>'{'+array.join(',')+'}').content,
-      new ListLikeObject('dict','dict',array=>'{'+array.join(',')+'}').content,
-      new ListLikeObject('index','index',array=>'['+array.join(',')+']').content,
+      new ListLikeObject('set', 'set', array => '{' + array.join(',') + '}')
+        .content,
+      new ListLikeObject('dict', 'dict', array => '{' + array.join(',') + '}')
+        .content,
+      new ListLikeObject('index', 'index', array => '[' + array.join(',') + ']')
+        .content
       //new Generic((obj, fields)=>obj+'['+join_args(fields)+']','index','index',).content,
     ]
-  },
-  {
-    kind: 'SEP'
   }
 ];
 

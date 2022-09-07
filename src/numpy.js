@@ -39,9 +39,6 @@ class Const {
 
 const NUMPY_BLOCK_CATEGORIES = [
   {
-    kind: 'SEP'
-  },
-  {
     kind: 'category',
     name: 'Numpy',
     colour: '210',

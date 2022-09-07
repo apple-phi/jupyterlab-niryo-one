@@ -54,15 +54,18 @@ Blockly.Python['sus_block'] = function (block) {
 
 // Creating a toolbox containing all the main (default) blocks
 // and adding the niryo categories.
-const TOOLBOX_NIRYO = {
+const TOOLBOX = {
   kind: 'categoryToolbox',
   contents: [
     ...PANDAS_BLOCK_CATEGORIES,
     ...NUMPY_BLOCK_CATEGORIES,
     ...GENERAL_BLOCK_CATEGORIES,
     {
+      kind: 'SEP'
+    },
+    {
       kind: 'category',
-      name: 'Test',
+      name: 'Sus',
       colour: '210',
       contents: [
         {
@@ -83,13 +86,16 @@ const TOOLBOX_NIRYO = {
         // }
       ]
     },
+    {
+      kind: 'SEP'
+    },
     ...DEFAULT_BLOCK_CATEGORIES
   ]
 };
-const BlocklyNiryo = {
+const SigBlock = {
   Blocks: Blockly.Blocks,
   Generator: Blockly.Python,
-  Toolbox: TOOLBOX_NIRYO
+  Toolbox: TOOLBOX
 };
 
-export default BlocklyNiryo;
+export default SigBlock;

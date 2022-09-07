@@ -3,9 +3,6 @@ import { ObjectBlock, BlockColors, MethodBlock } from './block-helpers';
 
 const PANDAS_BLOCK_CATEGORIES = [
   {
-    kind: 'SEP'
-  },
-  {
     kind: 'category',
     name: 'Pandas',
     colour: '210',
@@ -136,9 +133,6 @@ const PANDAS_BLOCK_CATEGORIES = [
         ]
       }
     ]
-  },
-  {
-    kind: 'SEP'
   }
 ];
 
