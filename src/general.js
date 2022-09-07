@@ -50,11 +50,6 @@ const GENERAL_BLOCK_CATEGORIES = [
       contents: [
         { kind: 'block', type: 'install' },
         { kind: 'block', type: 'import' },
-        {
-          kind: 'block',
-          type: 'pd_series'
-        },
-        { kind: 'block', type: 'pd_date_range' }
       ]
     },
     {
