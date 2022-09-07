@@ -20,11 +20,25 @@ const SIGTECH_BLOCK_CATEGORIES = [
         name: 'Strategy',
         colour: '210',
         contents: [
+          new MethodBlock(
+            'history',
+            'History',
+            'History of',
+            ['strategy'],
+            '',
+            'https://guide.sigtech.com/learning-resources/readme/1-your-first-sigtech-strategy',
+            '210'
+          ).content,
           new ObjectBlock(
             'basket_strategy',
             'Basket Strategy',
             'sig.BasketStrategy',
             [
+              'start_date',
+              'end_date',
+              'initial_cash',
+              'ticker',
+              'currency',
               'constituent_names',
               'weights',
               'rebalance_frequency',
@@ -44,7 +58,14 @@ const SIGTECH_BLOCK_CATEGORIES = [
             'reinvestment_strategy',
             'Reinvestment Strategy',
             'sig.ReinvestmentStrategy',
-            ['currency', 'underlyer', 'start_date', 'end_date', 'initial_cash'],
+            [
+              'currency',
+              'underlyer',
+              'start_date',
+              'end_date',
+              'initial_cash',
+              'ticker'
+            ],
             '',
             'https://platform.sigtech.com/docs/api/sigtech.framework.strategies.reinvestment_strategy.ReinvestmentStrategy.html#sigtech.framework.strategies.reinvestment_strategy.ReinvestmentStrategy',
             '210'
@@ -56,6 +77,15 @@ const SIGTECH_BLOCK_CATEGORIES = [
         name: 'Plotting',
         colour: '210',
         contents: [
+          new MethodBlock(
+            'sig_plot',
+            'Plot',
+            'plot',
+            ['data'],
+            '',
+            'https://guide.sigtech.com/learning-resources/readme/2.-simple-equity-basket-strategy',
+            '210'
+          ).content,
           new MethodBlock(
             'perfplot',
             'Strategy Perfplot',
