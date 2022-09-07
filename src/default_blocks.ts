@@ -1,8 +1,5 @@
 const DEFAULT_BLOCK_CATEGORIES = [
   {
-    kind: 'SEP'
-  },
-  {
     kind: 'category',
     name: 'Logic',
     colour: '210',
@@ -333,9 +330,6 @@ const DEFAULT_BLOCK_CATEGORIES = [
     ]
   },
   {
-    kind: 'SEP'
-  },
-  {
     kind: 'CATEGORY',
     colour: '330',
     custom: 'VARIABLE',
@@ -346,9 +340,6 @@ const DEFAULT_BLOCK_CATEGORIES = [
     colour: '290',
     custom: 'PROCEDURE',
     name: 'Functions'
-  },
-  {
-    kind: 'SEP'
   }
 ];
 export default DEFAULT_BLOCK_CATEGORIES;
