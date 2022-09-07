@@ -1,10 +1,18 @@
 import * as Blockly from 'blockly';
 
+const libraries = {
+    'numpy' : 'numpy np',
+    'pandas' : 'pandas pd',
+    'pyplot' : 'matplotlib.pyplot plt',
+}
+const options = Object.keys(libraries).map(x=>[x,x]);
+options.push(["all","all"]);
+
 Blockly.Blocks['install'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Install")
-          .appendField(new Blockly.FieldDropdown([["numpy","numpy"], ["pandas","pandas"], ["both","all"]]), "choice");
+          .appendField(new Blockly.FieldDropdown(options), "choice");
       this.setColour(230);
    this.setTooltip("");
    this.setHelpUrl("");
@@ -12,18 +20,24 @@ Blockly.Blocks['install'] = {
   };
 
 Blockly.Python['install'] = function (block) {
-    var choice = block.getFieldValue('choice');
-    if (choice == 'all'){
-        choice = 'numpy pandas';
+    if (block.getFieldValue('choice') == 'all'){
+        code = "!pip install ";
+        for (key in libraries){
+            code += " " + libraries[key].split()[0].split('.')[0];
+        }
+        return code;
+    } else {
+        return "!pip install " + libraries[block.getFieldValue('choice')].split()[0].split('.')[0];
     }
-    return `!pip install ${choice}\n`;
 };
+
+
 
 Blockly.Blocks['import'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("Import")
-          .appendField(new Blockly.FieldDropdown([["numpy","numpy"], ["pandas","pandas"], ["both","all"]]), "choice");
+          .appendField(new Blockly.FieldDropdown(options), "choice");
       this.setColour(230);
    this.setTooltip("");
    this.setHelpUrl("");
@@ -31,10 +45,16 @@ Blockly.Blocks['import'] = {
   };
 
 Blockly.Python['import'] = function (block) {
-    switch (block.getFieldValue('choice')){
-        case 'all': return 'import numpy as np, pandas as pd\n';
-        case 'numpy': return 'import numpy as np\n';
-        case 'pandas': return 'import pandas as pd\n';
+    if (block.getFieldValue('choice') == 'all'){
+        code = "";
+        for (key in libraries){
+            [a,b] = libraries[key].split();
+            code += `import ${a} as ${b}\n`
+        }
+        return code;
+    } else {
+        [a,b] = libraries[block.getFieldValue('choice')].split();
+        return `import ${a} as ${b}\n`;
     }
 };
 
