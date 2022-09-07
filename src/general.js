@@ -159,11 +159,8 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'link' },
       new ListLikeObject('set', 'set', array => '{' + array.join(',') + '}')
         .content,
-      new DictLikeObject(
-        'dict',
-        'dict',
-        array => '{' + array.map(([a, b]) => `${a}:${b}`).join(',') + '}'
-      ).content,
+      // new DictLikeObject('dict', 'dict', array => '{' + array.map(([a,b])=>`${a}:${b}`).join(',') + '}')
+      //   .content,
       new ListLikeObject('index', 'index', array => '[' + array.join(',') + ']')
         .content
       //new Generic((obj, fields)=>obj+'['+join_args(fields)+']','index','index',).content,
