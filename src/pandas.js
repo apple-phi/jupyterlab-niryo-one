@@ -59,7 +59,7 @@ const PANDAS_BLOCK_CATEGORIES = [
             'df_dropna',
             'DF Drop NaN',
             'dropna',
-            ['self', 'axis', 'how', 'thresh', 'subset', 'inplace'],
+            ['data', 'axis', 'how', 'thresh', 'subset', 'inplace'],
             '',
             'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html',
             BlockColors.FUNC
@@ -68,7 +68,7 @@ const PANDAS_BLOCK_CATEGORIES = [
             'df_t',
             'DF Transpose',
             'transpose',
-            ['self', 'copy'],
+            ['data', 'copy'],
             '',
             'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
             BlockColors.FUNC
@@ -77,7 +77,7 @@ const PANDAS_BLOCK_CATEGORIES = [
             'df_cumsum',
             'DF CumSum',
             'cumsum',
-            ['self', 'axis', 'skipna'],
+            ['data', 'axis', 'skipna'],
             '',
             'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
             BlockColors.FUNC
@@ -86,7 +86,7 @@ const PANDAS_BLOCK_CATEGORIES = [
             'df_all',
             'DF All',
             'all',
-            ['self', 'axis', 'bool_only', 'skipna', 'level'],
+            ['data', 'axis', 'bool_only', 'skipna', 'level'],
             '',
             'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.all.html',
             BlockColors.FUNC
@@ -95,7 +95,7 @@ const PANDAS_BLOCK_CATEGORIES = [
             'df_any',
             'DF Any',
             'all',
-            ['self', 'axis', 'bool_only', 'skipna', 'level'],
+            ['data', 'axis', 'bool_only', 'skipna', 'level'],
             '',
             'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.any.html',
             BlockColors.FUNC
@@ -128,6 +128,60 @@ const PANDAS_BLOCK_CATEGORIES = [
             ],
             '',
             'https://pandas.pydata.org/docs/reference/api/pandas.concat.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'series_to_frame',
+            'Series To DF',
+            'to_frame',
+            ['series'],
+            '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.Series.to_frame.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'df_sum',
+            'DF/Series Sum',
+            'sum',
+            ['data', 'axis', 'skipna', 'level', 'numeric_only', 'min_count'],
+            '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'mean',
+            'Mean',
+            'mean',
+            ['data', 'axis', 'skipna', 'level', 'numeric_only'],
+            '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mean.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'df_max',
+            'Max',
+            'max',
+            ['axis', 'skipna', 'level', 'numeric_only'],
+            '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.max.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'df_min',
+            'Min',
+            'min',
+            ['data', 'axis', 'skipna', 'level', 'numeric_only'],
+            '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.min.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'df_min',
+            'Min',
+            'min',
+            ['data', 'axis', 'skipna', 'level', 'numeric_only'],
+            '',
+            '',
             BlockColors.FUNC
           ).content
         ]

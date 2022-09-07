@@ -4,6 +4,7 @@ import PANDAS_BLOCK_CATEGORIES from './pandas';
 import NUMPY_BLOCK_CATEGORIES from './numpy';
 import GENERAL_BLOCK_CATEGORIES from './general';
 import DATETIME_BLOCK_CATEGORIES from './datetime';
+import SIGTECH_BLOCK_CATEGORIES from './sigtech';
 // import 'blockly/python';
 /*
  *  Blocks definition
@@ -19,6 +20,8 @@ Blockly.Blocks['test_block'] = {
       new Blockly.FieldTextInput('BLEH'),
       'NAME'
     );
+    this.appendValueInput('start').setCheck(null);
+    this.setInputsInline(false);
     this.appendDummyInput();
     this.appendDummyInput();
     this.setPreviousStatement(true, null);
@@ -59,6 +62,7 @@ const TOOLBOX = {
   kind: 'categoryToolbox',
   contents: [
     ...GENERAL_BLOCK_CATEGORIES,
+    ...SIGTECH_BLOCK_CATEGORIES,
     ...PANDAS_BLOCK_CATEGORIES,
     ...NUMPY_BLOCK_CATEGORIES,
     ...DATETIME_BLOCK_CATEGORIES,
