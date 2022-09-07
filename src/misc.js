@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly';
-import { ListLikeObject } from './multi_item';
+import { ListLikeObject, DictLikeObject } from './multi_item';
 import { Generic, join_args } from './pandas_helpers';
 
 const libraries = {
