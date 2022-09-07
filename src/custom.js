@@ -19,6 +19,8 @@ Blockly.Blocks['test_block'] = {
       new Blockly.FieldTextInput('BLEH'),
       'NAME'
     );
+    this.appendValueInput('start').setCheck(null);
+    this.setInputsInline(false);
     this.appendDummyInput();
     this.appendDummyInput();
     this.setPreviousStatement(true, null);
