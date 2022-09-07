@@ -3,6 +3,7 @@ import DEFAULT_BLOCK_CATEGORIES from './default_blocks';
 import PANDAS_BLOCK_CATEGORIES from './pandas';
 import NUMPY_BLOCK_CATEGORIES from './numpy';
 import GENERAL_BLOCK_CATEGORIES from './misc';
+import DATETIME_BLOCK_CATEGORIES from './datetime';
 // import 'blockly/python';
 /*
  *  Blocks definition
@@ -57,9 +58,10 @@ Blockly.Python['sus_block'] = function (block) {
 const TOOLBOX = {
   kind: 'categoryToolbox',
   contents: [
+    ...GENERAL_BLOCK_CATEGORIES,
     ...PANDAS_BLOCK_CATEGORIES,
     ...NUMPY_BLOCK_CATEGORIES,
-    ...GENERAL_BLOCK_CATEGORIES,
+    ...DATETIME_BLOCK_CATEGORIES,
     {
       kind: 'SEP'
     },

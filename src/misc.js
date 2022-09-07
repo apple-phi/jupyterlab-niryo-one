@@ -149,7 +149,7 @@ Blockly.Python['slice'] = function (block) {
 const GENERAL_BLOCK_CATEGORIES = [
   {
     kind: 'category',
-    name: 'Misc',
+    name: 'General',
     colour: '210',
     contents: [
       { kind: 'block', type: 'install' },
