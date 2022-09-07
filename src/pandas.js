@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly';
-import { PandasObject } from './pandas_helpers';
+import { PandasObject, PandasColors } from './pandas_helpers';
 
 const PANDAS_BLOCK_CATEGORIES = [
   {
@@ -42,6 +42,33 @@ const PANDAS_BLOCK_CATEGORIES = [
         ['data', 'index', 'columns', 'dtype', 'copy'],
         '',
         'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html'
+      ).content,
+      new PandasObject(
+        'df_dropna',
+        'DF Drop NaN',
+        'pd.DataFrame.dropna',
+        ['self', 'axis', 'how', 'thresh', 'subset', 'inplace'],
+        '',
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html',
+        PandasColors.FUNC
+      ).content,
+      new PandasObject(
+        'df_t',
+        'DF Transpose',
+        'pd.DataFrame.transpose',
+        ['self', 'copy'],
+        '',
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
+        PandasColors.FUNC
+      ).content,
+      new PandasObject(
+        'df_cumsum',
+        'DF CumSum',
+        'pd.DataFrame.cumsum',
+        ['self', 'axis', 'skipna'],
+        '',
+        'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.transpose.html',
+        PandasColors.FUNC
       ).content
     ]
   },

@@ -1,5 +1,7 @@
 import * as Blockly from 'blockly';
 
+export const PandasColors = { OBJECT: 230, FUNC: 110 };
+
 export class PandasObject {
   constructor(
     block_name,
@@ -7,7 +9,8 @@ export class PandasObject {
     py_name,
     fields,
     tooltip = '',
-    url = ''
+    url = '',
+    color = PandasColors.OBJECT
   ) {
     this.block_name = block_name;
     this.display_name = display_name;
@@ -15,6 +18,7 @@ export class PandasObject {
     this.fields = fields;
     this.tooltip = tooltip;
     this.url = url;
+    this.color = color;
     this.content = { kind: 'block', type: this.block_name };
     this.register(this);
   }
@@ -35,7 +39,6 @@ export class PandasObject {
         this.setHelpUrl(self.url);
       }
     };
-    // Blockly.Blocks[this.block_name].toplevel_init = 'import pandas as pd\n\n';
     Blockly.Python[this.block_name] = function (block) {
       let code = `${self.py_name}(`;
       for (const field of self.fields) {
@@ -44,9 +47,9 @@ export class PandasObject {
           field,
           Blockly.Python.ORDER_ATOMIC
         );
-        code += `${field_value ? `${field_value}, ` : ''}`;
+        code += `${field_value ? `${field}=${field_value}, ` : ''}`;
       }
-      return code + ')\n';
+      return [code + ')', Blockly.Python.ORDER_FUNCTION_CALL];
     };
     return self;
   }
