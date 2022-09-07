@@ -25,7 +25,7 @@ Blockly.Blocks['install'] = {
 Blockly.Python['install'] = function (block) {
   if (block.getFieldValue('choice') == 'all') {
     code = '!pip install ';
-    for (key in libraries) {
+    for (const key in libraries) {
       code += ' ' + libraries[key].split(' ')[0].split('.')[0];
     }
     return code;
@@ -51,7 +51,7 @@ Blockly.Blocks['import'] = {
 Blockly.Python['import'] = function (block) {
   if (block.getFieldValue('choice') == 'all') {
     var code = '';
-    for (key in libraries) {
+    for (const key in libraries) {
       const [a, b] = libraries[key].split(' ');
       code += `import ${a} as ${b}\n`;
     }
