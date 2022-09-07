@@ -139,6 +139,35 @@ Blockly.Python['set_val'] = function (block) {
   return code;
 };
 
+Blockly.Blocks['get_index'] = {
+  init: function () {
+    this.appendValueInput('NAME1').setCheck(null);
+    this.appendDummyInput().appendField('index');
+    this.appendValueInput('NAME2').setCheck(null);
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip('');
+    this.setHelpUrl('');
+  }
+};
+Blockly.Python['get_index'] = function (block) {
+  var v_1 = Blockly.Python.valueToCode(
+    block,
+    'NAME1',
+    Blockly.Python.ORDER_ATOMIC
+  );
+  //TODO: work with int
+  var v_2 = Blockly.Python.valueToCode(
+    block,
+    'NAME2',
+    Blockly.Python.ORDER_ATOMIC
+  );
+
+  var code = v_1 + '[' + v_2 + ']';
+
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
 Blockly.Blocks['slice'] = {
   init: function () {
     this.appendDummyInput().appendField('Slice');
@@ -187,6 +216,8 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'import' },
       { kind: 'block', type: 'exec' },
       { kind: 'block', type: 'set_val' },
+      { kind: 'block', type: 'get_index' },
+      { kind: 'block', type: 'slice' },
       // { kind: 'block', type: 'link' },
       new ListLikeObject('set', 'set', array => '{' + array.join(',') + '}')
         .content,
