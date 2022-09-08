@@ -127,7 +127,7 @@ export function join_kwargs(block, _fields) {
       block,
       field,
       Blockly.Python.ORDER_ATOMIC
-    );
+    )|| "None";
     code += `${field_value ? `${field}=${field_value}, ` : ''}`;
   }
   return code;
@@ -154,6 +154,7 @@ export class KwargsBase {
     p_basic_fields,
     t_basic_fields,
     optional_fields,
+    code_gen = null,
     tooltip = '',
     url = '',
     color = BlockColors.OBJECT
@@ -164,11 +165,13 @@ export class KwargsBase {
     this.p_basic_fields = p_basic_fields;
     this.t_basic_fields = t_basic_fields;
     this.optional_fields = optional_fields;
+    this.all_fields = [...p_basic_fields, ...t_basic_fields, ...optional_fields];
+    this.code_gen = code_gen;
     this.tooltip = tooltip;
     this.url = url;
     this.color = color;
     this.content = { kind: 'block', type: this.block_name };
-    this.register(this).activate(this);
+    this.register(this);
     console.log(this.content);
   }
 
@@ -182,7 +185,7 @@ export class KwargsBase {
             .appendField(new Blockly.FieldCheckbox('TRUE'), field)
             .appendField(field);
         }
-        for (const field of self.t_basic_fields) {
+        for (const field of self.optional_fields) {
           this.appendDummyInput()
             .appendField(new Blockly.FieldCheckbox('FALSE'), field)
             .appendField(field);
@@ -199,7 +202,7 @@ export class KwargsBase {
       init: function () {
         this.appendDummyInput().appendField(self.display_name);
         // this.appendDummyInput();
-        for (const field of self.p_basic_fields + self.t_basic_fields) {
+        for (const field of self.p_basic_fields.concat(self.t_basic_fields)) {
           this.appendValueInput(field)
             .setCheck(null)
             .setAlign(Blockly.ALIGN_RIGHT)
@@ -211,25 +214,28 @@ export class KwargsBase {
         this.setTooltip(self.tooltip);
         this.setHelpUrl(self.url);
         this.setMutator(new Blockly.Mutator([]));
-        this.storage = Object.assign(
-          {},
-          ...self.t_basic_fields.map(x => {
-            x: 'TRUE';
-          }),
-          ...self.optional_fields.map(x => {
-            x: 'FALSE';
-          })
-        );
+        this.storage = {};
+        for (const field of self.t_basic_fields) {
+          this.storage[field] = 'TRUE';
+        }
+        for (const field of self.optional_fields) {
+          this.storage[field] = 'FALSE';
+        }
+
+        console.log(this.storage + 'aaaaa');
       },
       //load json dict
       loadExtraState: function (state) {
         console.log('loadExtraState');
-        for (let [key, value] of Object.entries(state)){
-          if (this.storage[key] !== value){
+        for (let [key, value] of Object.entries(state)) {
+          if (this.storage[key] !== value) {
             this.storage[key] = value;
-            if (value=="TRUE"){
-              this.appendValueInput(key).setCheck(null);
-            }else{
+            if (value == 'TRUE') {
+              this.appendValueInput(key)
+                .setCheck(null)
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField(key);
+            } else {
               this.removeInput(key);
             }
           }
@@ -238,36 +244,55 @@ export class KwargsBase {
       //Serialise to json, return some dict
       saveExtraState: function () {
         console.log('saveExtraState');
-        return {...this.storage};
+        return { ...this.storage };
       },
-      decompose: function(workspace) {
+      decompose: function (workspace) {
         console.log('decompose');
-        var topBlock = workspace.newBlock('_'+self.block_name);
-        for (let [key, value] of Object.entries(this.storage)){
-          topBlock.setFieldValue(value,key);
+        var topBlock = workspace.newBlock('_' + self.block_name);
+        for (let [key, value] of Object.entries(this.storage)) {
+          topBlock.setFieldValue(value, key);
         }
         topBlock.initSvg();
         return topBlock;
       },
-      compose: function(topBlock) {
+      compose: function (topBlock) {
         console.log('compose');
         console.log(this.storage);
-        for (let [key, value] of Object.entries(this.storage)){
+        for (let [key, value] of Object.entries(this.storage)) {
           let new_v = topBlock.getFieldValue(key);
-          console.log(key,new_v,value)
-          if (value !== new_v){
+          console.log(key, new_v, value);
+          if (value !== new_v) {
             this.storage[key] = new_v;
-            if (new_v=="TRUE"){
-              this.appendValueInput(key).setCheck(null);
-            }else{
+            if (new_v == 'TRUE') {
+              this.appendValueInput(key)
+                .setCheck(null)
+                .setAlign(Blockly.ALIGN_RIGHT)
+                .appendField(key);
+            } else {
               console.log('aaaa');
               this.removeInput(key);
             }
           }
-        };
-
-  }
+        }
+      }
     };
+
+    Blockly.Python[self.block_name] = function (block) {
+      if (self.code_gen) {
+        let _fields = [];
+        for (const field of self.all_fields) {
+          _fields.push([field,
+            Blockly.Python.valueToCode(
+              block,
+              field,
+              Blockly.Python.ORDER_ATOMIC
+            ) || 'None']);
+        }
+        return self.code_gen(block, _fields);
+      }
+      return `${self.py_name}(${join_kwargs(block, self.all_fields)})`;
+    }
+    
     return self;
   }
 }
