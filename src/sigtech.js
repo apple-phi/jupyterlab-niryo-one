@@ -7,6 +7,14 @@ const SIGTECH_BLOCK_CATEGORIES = [
     colour: '210',
     contents: [
       new ObjectBlock(
+        'sig_init',
+        'Sigtech Init',
+        'sig.init',
+        ['env', 'env_date', 'data_date'],
+        '',
+        ''
+      ).content,
+      new ObjectBlock(
         'sig_obj_get',
         'Obj Get',
         'sig.obj.get',
