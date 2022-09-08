@@ -138,7 +138,7 @@ export class ListLikeObject {
           Blockly.Python.ORDER_NONE
         ];
       }
-      return [self.name_or_func(fields), Blockly.Python.ORDER_COLLECTION];
+      return [self.name_or_func(block,fields), Blockly.Python.ORDER_COLLECTION];
     };
     return self;
   }
@@ -292,7 +292,7 @@ export class DictLikeObject {
             Blockly.Python.ORDER_COLLECTION
           ];
         }
-        return [self.name_or_func(fields), Blockly.Python.ORDER_COLLECTION];
+        return [self.name_or_func(block,fields), Blockly.Python.ORDER_COLLECTION];
       };
       return self;
     }

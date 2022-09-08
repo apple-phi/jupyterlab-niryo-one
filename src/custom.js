@@ -5,6 +5,8 @@ import NUMPY_BLOCK_CATEGORIES from './numpy';
 import GENERAL_BLOCK_CATEGORIES from './general';
 import DATETIME_BLOCK_CATEGORIES from './datetime';
 import SIGTECH_BLOCK_CATEGORIES from './sigtech';
+import MUTATOR from './mutator';
+
 // import 'blockly/python';
 /*
  *  Blocks definition
@@ -81,7 +83,8 @@ const TOOLBOX = {
         {
           kind: 'block',
           type: 'sus_block'
-        }
+        },
+        MUTATOR,
         // {
         //   kind: 'block',
         //   type: 'string_length'

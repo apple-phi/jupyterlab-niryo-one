@@ -1,6 +1,6 @@
 import * as Blockly from 'blockly';
 import { ListLikeObject, DictLikeObject } from './multi_item';
-import { Generic, join_args } from './pandas_helpers';
+import { Generic, join_args } from './block-helpers';
 
 const libraries = {
   numpy: 'numpy np',
@@ -219,11 +219,11 @@ const GENERAL_BLOCK_CATEGORIES = [
       { kind: 'block', type: 'get_index' },
       { kind: 'block', type: 'slice' },
       // { kind: 'block', type: 'link' },
-      new ListLikeObject('set', 'set', array => '{' + array.join(',') + '}')
+      new ListLikeObject('set', 'set', (block,array) => '{' + join_args(block,array) + '}')
         .content,
-      new DictLikeObject('dict', 'dict', array => '{' + array.map(([a,b])=>`${a}:${b}`).join(',') + '}')
+      new DictLikeObject('dict', 'dict', (block,array) => '{' + join_args(block,array) + '}')
         .content,
-      new ListLikeObject('index', 'index', array => '[' + array.join(',') + ']')
+      new ListLikeObject('index', 'index', (block,array) => '[' + join_args(block,array) + ']')
         .content
       //new Generic((obj, fields)=>obj+'['+join_args(fields)+']','index','index',).content,
     ]

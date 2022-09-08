@@ -1,5 +1,5 @@
 import * as Blockly from 'blockly';
-import { ObjectBlock, BlockColors, MethodBlock } from './block-helpers';
+import { ObjectBlock, BlockColors, MethodBlock, KwargsBase } from './block-helpers';
 
 class Const {
   constructor(
@@ -60,12 +60,20 @@ const NUMPY_BLOCK_CATEGORIES = [
         name: 'Array',
         colour: '210',
         contents: [
-          new ObjectBlock(
+          // new ObjectBlock(
+          //   'nparray',
+          //   'Array',
+          //   'np.array',
+          //   'object,dtype,copy,order,subok,ndmin,like'.split(',')
+          // ).content,
+          new KwargsBase(
             'nparray',
             'Array',
             'np.array',
-            'object,dtype,copy,order,subok,ndmin,like'.split(',')
-          ).content
+            ['object'],
+            ['dtype'],
+            'copy,order,subok,ndmin,like'.split(','),
+          ).content,
         ]
       }
     ]
