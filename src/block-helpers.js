@@ -123,11 +123,9 @@ export class Generic extends BlockBase {
 export function join_kwargs(block, _fields) {
   let code = '';
   for (const field of _fields) {
-    const field_value = Blockly.Python.valueToCode(
-      block,
-      field,
-      Blockly.Python.ORDER_ATOMIC
-    )|| "None";
+    const field_value =
+      Blockly.Python.valueToCode(block, field, Blockly.Python.ORDER_ATOMIC) ||
+      'None';
     code += `${field_value ? `${field}=${field_value}, ` : ''}`;
   }
   return code;
@@ -165,7 +163,11 @@ export class KwargsBase {
     this.p_basic_fields = p_basic_fields;
     this.t_basic_fields = t_basic_fields;
     this.optional_fields = optional_fields;
-    this.all_fields = [...p_basic_fields, ...t_basic_fields, ...optional_fields];
+    this.all_fields = [
+      ...p_basic_fields,
+      ...t_basic_fields,
+      ...optional_fields
+    ];
     this.code_gen = code_gen;
     this.tooltip = tooltip;
     this.url = url;
@@ -281,18 +283,20 @@ export class KwargsBase {
       if (self.code_gen) {
         let _fields = [];
         for (const field of self.all_fields) {
-          _fields.push([field,
+          _fields.push([
+            field,
             Blockly.Python.valueToCode(
               block,
               field,
               Blockly.Python.ORDER_ATOMIC
-            ) || 'None']);
+            ) || 'None'
+          ]);
         }
         return self.code_gen(block, _fields);
       }
       return `${self.py_name}(${join_kwargs(block, self.all_fields)})`;
-    }
-    
+    };
+
     return self;
   }
 }
