@@ -176,12 +176,21 @@ const PANDAS_BLOCK_CATEGORIES = [
             BlockColors.FUNC
           ).content,
           new MethodBlock(
-            'df_min',
-            'Min',
-            'min',
-            ['data', 'axis', 'skipna', 'level', 'numeric_only'],
+            'df_head',
+            'Head',
+            'head',
+            ['data', 'n'],
             '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html',
+            BlockColors.FUNC
+          ).content,
+          new MethodBlock(
+            'df_tail',
+            'Tail',
+            'tail',
+            ['data', 'n'],
             '',
+            'https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.tail.html',
             BlockColors.FUNC
           ).content
         ]

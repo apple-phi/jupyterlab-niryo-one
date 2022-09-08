@@ -22,8 +22,8 @@ const SIGTECH_BLOCK_CATEGORIES = [
         contents: [
           new MethodBlock(
             'history',
-            'History',
             'History of',
+            'history',
             ['strategy'],
             '',
             'https://guide.sigtech.com/learning-resources/readme/1-your-first-sigtech-strategy',
@@ -78,21 +78,37 @@ const SIGTECH_BLOCK_CATEGORIES = [
         colour: '210',
         contents: [
           new MethodBlock(
-            'sig_plot',
-            'Plot',
-            'plot',
-            ['data'],
-            '',
+            'hist_plot',
+            'HistPlot',
+            'history().plot',
+            ['strategy'],
+            'Equivalent to getting strategy history and plotting it separately',
             'https://guide.sigtech.com/learning-resources/readme/2.-simple-equity-basket-strategy',
             '210'
           ).content,
           new MethodBlock(
             'perfplot',
-            'Strategy Perfplot',
+            'PerfPlot',
             'plot.performance',
             ['strategy', 'fallback', 'aum'],
             '',
             'https://platform.sigtech.com/docs/api/sigtech.framework.strategies.components.plot_wrapper.PlotWrapper.html#sigtech.framework.strategies.components.plot_wrapper.PlotWrapper'
+          ).content,
+          new MethodBlock(
+            'timeline',
+            'Timeline',
+            'plot.timeline',
+            ['strategy'],
+            '',
+            ''
+          ).content,
+          new MethodBlock(
+            'portfolio_table',
+            'Portfolio Table',
+            'plot.portfolio_table',
+            ['strategy', 'dts', 'end_dt'],
+            '',
+            ''
           ).content
         ]
       }
