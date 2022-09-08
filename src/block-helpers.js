@@ -120,7 +120,7 @@ export class Generic extends BlockBase {
   }
 }
 
-export function join_kwargs(_fields) {
+export function join_kwargs(block, _fields) {
   let code = '';
   for (const field of _fields) {
     const field_value = Blockly.Python.valueToCode(
@@ -133,7 +133,7 @@ export function join_kwargs(_fields) {
   return code;
 }
 
-export function join_args(_fields) {
+export function join_args(block, _fields) {
   let code = '';
   for (const field of _fields) {
     const field_value = Blockly.Python.valueToCode(
